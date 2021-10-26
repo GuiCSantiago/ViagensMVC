@@ -1,0 +1,62 @@
+﻿@model IEnumerable<ViagensMVC.Models.Veiculo>
+
+@{
+    ViewData["Title"] = "Listagem";
+}
+
+<h1>Listagem</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Marca)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Modelo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ItensAdicionais)
+            </th>
+            <th>
+                Ações
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Marca)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Modelo)
+            </td>
+            <td>
+                <ul>
+                    @foreach (var itemAdc in item.ItensAdicionais)
+                    {
+                        <li>@itemAdc.Descricao</li>
+                    }
+                </ul>
+            </td>
+            <td>
+                @if (item.ItensAdicionais.Any())
+                {
+                    <a href="/veiculos/DeleteItem?id=@item.Id" class="btn btn-light">Deletar Itens</a>
+                }
+            </td>
+        </tr>
+}  
+    </tbody>
+</table>

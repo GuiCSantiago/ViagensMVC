@@ -1,0 +1,93 @@
+﻿@model IEnumerable<ViagensMVC.Models.Viagem>
+
+@{
+    ViewData["Title"] = "Lista de Viagens";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-light">Adicionar</a>
+    &nbsp; <a asp-action="UpdateViagens" class="btn btn-dark">Atualizar Viagens</a>
+</p>
+
+<form class="navbar-form navbar-left" role="search">
+    <p>
+        <label for="dia">Dia da viagem</label>
+        <input type="date" class="form-control" name="dia" value=@ViewData["dia"] />
+    </p>
+    <p>
+        <button type="submit" asp-action="ListaViagensDia" class="btn btn-primary">Filtrar</button>
+        &nbsp; <a href="/veiculos/Index" class="btn btn-info">Veiculos</a>
+        &nbsp; <a asp-action="Index" class="btn btn-dark">Voltar</a>
+        &nbsp; <a asp-action="MotoristasRota" class="btn btn-info">Motoristas</a>
+    </p>
+</form>
+    
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rota)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataHoraInicio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataHoraFim)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Valor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Posicao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Motorista.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+       @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rota)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataHoraInicio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataHoraFim)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Valor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Posicao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Motorista.Nome)
+            </td>
+            <th>
+                @Html.DisplayFor(modelItem => item.Status)
+            </th>
+            <td>
+                <a href="/viagens/Edit?id=@item.Id" class="btn btn-light">Editar</a>
+                <a href="/viagens/Details?id=@item.Id" class="btn btn-info">Detalhes</a>
+                <a href="/viagens/Delete?id=@item.Id" class="btn btn-danger">Deletar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

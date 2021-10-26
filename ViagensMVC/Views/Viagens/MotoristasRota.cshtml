@@ -1,0 +1,46 @@
+﻿@model ViagensMVC.Models.ViewModels.MotoristaRotaViewModel
+
+@{
+    ViewData["Title"] = "MotoristasRota";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>
+    <a asp-action="Index">Listagem</a>
+</p>
+
+<form asp-action="MotoristasRota">
+    <label for="rota">Rota</label>
+    <input type="text" class="form-control"  asp-for="Rota" />
+    <p>
+        <button type="submit" class="btn btn-primary">Filtrar</button>
+    </p>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Id
+            </th>
+            <th>
+                Nome
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Motoristas)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

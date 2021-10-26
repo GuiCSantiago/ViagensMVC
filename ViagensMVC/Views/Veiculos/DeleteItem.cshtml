@@ -1,0 +1,27 @@
+﻿@model ViagensMVC.Models.ViewModels.ItensVeiculoViewModel
+
+@{
+    ViewData["Title"] = "Deletar Item";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+
+
+<h4>Viagem</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="DeleteItem">
+            <div class="form-group">
+                <label asp-for="Item.Descricao" class="control-label"></label>
+                <select asp-for="Item.Id" asp-items="@(new SelectList(Model.Veiculo.ItensAdicionais, "Id", "Descricao"))" class="form-control"></select>
+            </div>
+            <input type="submit" value="Deletar item" class="btn btn-danger" />
+        </form>
+    </div>
+</div>
+
+<a asp-action="Index">Voltar a lista</a>
+
+
